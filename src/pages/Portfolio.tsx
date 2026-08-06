@@ -26,41 +26,56 @@ export default function Portfolio() {
 
       <main>
         {/* Hero */}
-        <section className="mx-auto flex min-h-[60vh] max-w-6xl flex-col items-start justify-center px-6 py-12">
-          <Reveal variant="up">
-            <p className="mb-4 flex items-center gap-2 text-sm font-medium text-accent-2">
-              <MapPin className="h-4 w-4" aria-hidden="true" />
-              {data.location}
-            </p>
-          </Reveal>
-          <Reveal variant="up" delay={100}>
-            <h1 className="gradient-text font-heading text-5xl font-bold leading-tight sm:text-6xl md:text-7xl">
-              {data.name}
-            </h1>
-          </Reveal>
-          <Reveal variant="up" delay={200}>
-            <p className="mt-4 max-w-2xl text-lg text-foreground/85 sm:text-xl">{data.role}</p>
-          </Reveal>
-          <Reveal variant="up" delay={300}>
-            <p className="mt-3 max-w-xl text-muted">{data.tagline}</p>
-          </Reveal>
-          <Reveal variant="up" delay={400}>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href="#experience"
-                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-foreground transition-transform hover:scale-105"
-              >
-                View my work
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </a>
-              <a
-                href="#contact"
-                className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-surface"
-              >
-                Get in touch
-              </a>
-            </div>
-          </Reveal>
+        <section className="mx-auto flex min-h-[60vh] max-w-6xl flex-col items-center gap-10 px-6 py-12 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col items-start">
+            <Reveal variant="up">
+              <p className="mb-4 flex items-center gap-2 text-sm font-medium text-accent-2">
+                <MapPin className="h-4 w-4" aria-hidden="true" />
+                {data.location}
+              </p>
+            </Reveal>
+            <Reveal variant="up" delay={100}>
+              <h1 className="gradient-text font-heading text-5xl font-bold leading-tight sm:text-6xl md:text-7xl">
+                {data.name}
+              </h1>
+            </Reveal>
+            <Reveal variant="up" delay={200}>
+              <p className="mt-4 max-w-2xl text-lg text-foreground/85 sm:text-xl">{data.role}</p>
+            </Reveal>
+            <Reveal variant="up" delay={300}>
+              <p className="mt-3 max-w-xl text-muted">{data.tagline}</p>
+            </Reveal>
+            <Reveal variant="up" delay={400}>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <a
+                  href="#experience"
+                  className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-foreground transition-transform hover:scale-105"
+                >
+                  View my work
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </a>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 rounded-full border border-border px-6 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-surface"
+                >
+                  Get in touch
+                </a>
+              </div>
+            </Reveal>
+          </div>
+
+          <div className="flex w-full flex-col gap-4 lg:w-64">
+            {data.stats.map((stat, i) => (
+              <Reveal key={stat.label} variant="right" delay={i * 100}>
+                <ShineCard className="rounded-2xl border border-border bg-surface p-5">
+                  <div className="font-heading text-3xl font-bold text-accent-2">
+                    <CountUp value={stat.value} suffix={stat.suffix} />
+                  </div>
+                  <p className="mt-1 text-sm text-muted">{stat.label}</p>
+                </ShineCard>
+              </Reveal>
+            ))}
+          </div>
         </section>
 
         {/* About */}
@@ -124,22 +139,6 @@ export default function Portfolio() {
                     </a>
                   </div>
                 </ShineCard>
-              </Reveal>
-            ))}
-          </div>
-        </section>
-
-        {/* Stats */}
-        <section className="mx-auto max-w-6xl px-6 py-20">
-          <div className="grid grid-cols-2 gap-6 sm:grid-cols-4">
-            {data.stats.map((stat, i) => (
-              <Reveal key={stat.label} variant="up" delay={i * 100}>
-                <div className="rounded-2xl border border-border bg-surface p-6 text-center">
-                  <div className="font-heading text-3xl font-bold text-accent-2 sm:text-4xl">
-                    <CountUp value={stat.value} suffix={stat.suffix} />
-                  </div>
-                  <p className="mt-2 text-sm text-muted">{stat.label}</p>
-                </div>
               </Reveal>
             ))}
           </div>
