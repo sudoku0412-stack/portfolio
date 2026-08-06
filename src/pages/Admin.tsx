@@ -314,13 +314,25 @@ export default function Admin() {
                       />
                     </div>
                     <div>
-                      <label className={labelClass}>Company</label>
+                      <label className={labelClass}>Parent company</label>
                       <input
                         className={inputClass}
                         value={exp.company}
                         onChange={(e) => {
                           const next = [...form.experience]
                           next[i] = { ...exp, company: e.target.value }
+                          set('experience', next)
+                        }}
+                      />
+                    </div>
+                    <div>
+                      <label className={labelClass}>Working for</label>
+                      <input
+                        className={inputClass}
+                        value={exp.workingFor ?? ''}
+                        onChange={(e) => {
+                          const next = [...form.experience]
+                          next[i] = { ...exp, workingFor: e.target.value }
                           set('experience', next)
                         }}
                       />

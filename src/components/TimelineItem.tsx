@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Building2, ChevronDown } from 'lucide-react'
+import { Briefcase, Building2, ChevronDown } from 'lucide-react'
 import type { Experience } from '../lib/portfolio-data'
 import ShineCard from './ShineCard'
 
@@ -33,6 +33,13 @@ export default function TimelineItem({ experience, isLast }: TimelineItemProps) 
             <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted">
               <Building2 className="h-4 w-4 text-accent-2" aria-hidden="true" />
               <span>{experience.company}</span>
+              {experience.workingFor && (
+                <>
+                  <span aria-hidden="true">·</span>
+                  <Briefcase className="h-4 w-4 text-accent-2" aria-hidden="true" />
+                  <span>{experience.workingFor}</span>
+                </>
+              )}
               <span aria-hidden="true">·</span>
               <span>{experience.period}</span>
             </div>

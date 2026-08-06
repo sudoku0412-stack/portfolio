@@ -3,6 +3,7 @@ import { useCallback, useEffect, useState } from 'react'
 export type Experience = {
   role: string
   company: string
+  workingFor?: string
   period: string
   description: string
   highlights?: string[]
@@ -81,6 +82,7 @@ export const defaultData: PortfolioData = {
     {
       role: 'Mendix Developer',
       company: 'Tata Consultancy Services',
+      workingFor: 'Confidential client — risk assessment platform',
       period: 'Aug 2019 — Aug 2021',
       description:
         'Built a web application in Mendix processing risk assessment for an internal client, working in an Agile environment with daily standups.',
@@ -93,6 +95,7 @@ export const defaultData: PortfolioData = {
     {
       role: 'Mendix Developer',
       company: 'Tata Consultancy Services',
+      workingFor: 'Confidential client — ecommerce platform',
       period: 'Aug 2018 — Aug 2019',
       description:
         'Built a Mendix web application for an ecommerce client, processing retail orders in an Agile environment with daily standups.',
@@ -101,6 +104,7 @@ export const defaultData: PortfolioData = {
     {
       role: 'Integration Developer',
       company: 'Tata Consultancy Services',
+      workingFor: 'Confidential client — retail orders & internal hiring systems',
       period: 'Oct 2016 — Aug 2018',
       description:
         'Developed and supported applications built on IBM Integration Bus and IBM BPM — IIB for retail order processing, BPM for internal hiring workflows.',
@@ -113,6 +117,7 @@ export const defaultData: PortfolioData = {
     {
       role: 'Integration Developer',
       company: 'Tata Consultancy Services',
+      workingFor: 'Confidential client — retail order processing',
       period: 'Dec 2015 — Oct 2016',
       description:
         'Developed and supported a Tibco BW application processing retail orders, working in an Agile environment with daily standups.',
