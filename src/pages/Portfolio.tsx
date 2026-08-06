@@ -24,6 +24,9 @@ export default function Portfolio() {
       ? { ...stat, value: yearsExperience }
       : stat,
   )
+  const displayTagline = data.careerStartDate
+    ? data.tagline.replace(/\d+\+?\s*years?/i, `${yearsExperience}+ years`)
+    : data.tagline
 
   return (
     <div id="top" className="relative min-h-screen">
@@ -49,7 +52,7 @@ export default function Portfolio() {
               <p className="mt-4 max-w-2xl text-lg text-foreground/85 sm:text-xl">{data.role}</p>
             </Reveal>
             <Reveal variant="up" delay={300}>
-              <p className="mt-3 max-w-xl text-muted">{data.tagline}</p>
+              <p className="mt-3 max-w-xl text-muted">{displayTagline}</p>
             </Reveal>
             <Reveal variant="up" delay={400}>
               <div className="mt-8 flex flex-wrap gap-4">

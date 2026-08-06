@@ -177,6 +177,10 @@ export default function Admin() {
                   value={form.tagline}
                   onChange={(e) => set('tagline', e.target.value)}
                 />
+                <p className="mt-1 text-xs text-muted">
+                  Any "X years" mentioned here is auto-replaced with the live count from your
+                  career start date.
+                </p>
               </div>
               <div className="sm:col-span-2">
                 <label className={labelClass}>About</label>
