@@ -26,7 +26,7 @@ export default function Portfolio() {
 
       <main>
         {/* Hero */}
-        <section className="mx-auto flex max-w-6xl flex-col items-center gap-10 px-6 py-16 lg:flex-row lg:items-start lg:justify-between">
+        <section className="mx-auto flex max-w-6xl flex-col items-center gap-10 px-6 pt-16 pb-4 lg:flex-row lg:items-start lg:justify-between">
           <div className="flex flex-col items-start">
             <Reveal variant="up">
               <p className="mb-4 flex items-center gap-2 text-sm font-medium text-accent-2">
@@ -64,10 +64,10 @@ export default function Portfolio() {
             </Reveal>
           </div>
 
-          <div className="flex w-full flex-col gap-4 lg:w-64">
+          <div className="flex w-full flex-col gap-3 lg:w-64">
             {data.stats.map((stat, i) => (
               <Reveal key={stat.label} variant="right" delay={i * 100}>
-                <ShineCard className="rounded-2xl border border-border bg-surface p-5">
+                <ShineCard className="rounded-2xl border border-border bg-surface p-4">
                   <div className="font-heading text-3xl font-bold text-accent-2">
                     <CountUp value={stat.value} suffix={stat.suffix} />
                   </div>
@@ -79,7 +79,7 @@ export default function Portfolio() {
         </section>
 
         {/* About */}
-        <section id="about" className="mx-auto max-w-6xl px-6 py-20">
+        <section id="about" className="mx-auto max-w-6xl px-6 pt-2 pb-20">
           <Reveal variant="up">
             <h2 className="font-heading text-3xl font-bold sm:text-4xl">About</h2>
           </Reveal>
