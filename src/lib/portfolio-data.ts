@@ -40,12 +40,9 @@ export function getYearsOfExperience(careerStartDate: string): number {
   const start = new Date(careerStartDate)
   if (Number.isNaN(start.getTime())) return 0
   const now = new Date()
-  let years = now.getFullYear() - start.getFullYear()
-  const anniversaryPassed =
-    now.getMonth() > start.getMonth() ||
-    (now.getMonth() === start.getMonth() && now.getDate() >= start.getDate())
-  if (!anniversaryPassed) years -= 1
-  return Math.max(0, years)
+  const msPerYear = 1000 * 60 * 60 * 24 * 365.25
+  const years = (now.getTime() - start.getTime()) / msPerYear
+  return Math.max(0, Math.round(years))
 }
 
 export const STORAGE_KEY = 'portfolio-data-v1'
@@ -60,7 +57,7 @@ export const defaultData: PortfolioData = {
   email: 'kmaz285@gmail.com',
   phone: '+91-8961269679',
   appsTitle: 'Apps',
-  careerStartDate: '2015-08-01',
+  careerStartDate: '2015-08-17',
   stats: [
     { label: 'Engineers led', value: 18 },
     { label: 'Releases delivered', value: 240, suffix: '+' },
