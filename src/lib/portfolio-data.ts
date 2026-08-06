@@ -82,7 +82,7 @@ export const defaultData: PortfolioData = {
     {
       role: 'Mendix Developer',
       company: 'Tata Consultancy Services',
-      workingFor: 'Confidential client — risk assessment platform',
+      workingFor: 'Zurich Insurance',
       period: 'Aug 2019 — Aug 2021',
       description:
         'Built a web application in Mendix processing risk assessment for an internal client, working in an Agile environment with daily standups.',

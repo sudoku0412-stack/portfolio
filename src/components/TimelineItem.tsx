@@ -30,17 +30,17 @@ export default function TimelineItem({ experience, isLast }: TimelineItemProps) 
             <h3 className="font-heading text-lg font-semibold text-foreground sm:text-xl">
               {experience.role}
             </h3>
-            <div className="mt-1 flex flex-wrap items-center gap-2 text-sm text-muted">
-              <Building2 className="h-4 w-4 text-accent-2" aria-hidden="true" />
-              <span>{experience.company}</span>
+            <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted">
+              <span className="flex items-center gap-1.5">
+                <Building2 className="h-4 w-4 text-accent-2" aria-hidden="true" />
+                Parent company: {experience.company}
+              </span>
               {experience.workingFor && (
-                <>
-                  <span aria-hidden="true">·</span>
+                <span className="flex items-center gap-1.5">
                   <Briefcase className="h-4 w-4 text-accent-2" aria-hidden="true" />
-                  <span>{experience.workingFor}</span>
-                </>
+                  Working for: {experience.workingFor}
+                </span>
               )}
-              <span aria-hidden="true">·</span>
               <span>{experience.period}</span>
             </div>
             <p className="mt-3 text-sm leading-relaxed text-foreground/85 sm:text-base">
