@@ -26,7 +26,7 @@ export default function Portfolio() {
 
       <main>
         {/* Hero */}
-        <section className="mx-auto flex min-h-[60vh] max-w-6xl flex-col items-center gap-10 px-6 py-12 lg:flex-row lg:items-center lg:justify-between">
+        <section className="mx-auto flex max-w-6xl flex-col items-center gap-10 px-6 py-16 lg:flex-row lg:items-center lg:justify-between">
           <div className="flex flex-col items-start">
             <Reveal variant="up">
               <p className="mb-4 flex items-center gap-2 text-sm font-medium text-accent-2">
