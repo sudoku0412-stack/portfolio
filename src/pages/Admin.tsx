@@ -1,13 +1,69 @@
-import { useState, type FormEvent } from 'react'
+import { useRef, useState, type FormEvent, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { toast } from 'sonner'
-import { Plus, Trash2, ArrowLeft, RotateCcw } from 'lucide-react'
+import { ChevronDown, Plus, Trash2, ArrowLeft, RotateCcw } from 'lucide-react'
 import { usePortfolioData, defaultData, type PortfolioData } from '../lib/portfolio-data'
 
 const inputClass =
   'w-full rounded-lg border border-border bg-background px-3 py-2 text-sm text-foreground outline-none focus:border-accent'
 const labelClass = 'mb-1.5 block text-sm font-medium text-muted'
 const sectionClass = 'rounded-2xl border border-border bg-surface p-6'
+
+function Section({
+  title,
+  action,
+  defaultOpen = true,
+  children,
+}: {
+  title: string
+  action?: ReactNode
+  defaultOpen?: boolean
+  children: ReactNode
+}) {
+  const [open, setOpen] = useState(defaultOpen)
+
+  return (
+    <section className={sectionClass}>
+      <div className="mb-4 flex items-center justify-between">
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          className="flex items-center gap-2 font-heading text-xl font-semibold"
+          aria-expanded={open}
+        >
+          <ChevronDown
+            className={`h-5 w-5 text-muted transition-transform duration-300 ${open ? '' : '-rotate-90'}`}
+            aria-hidden="true"
+          />
+          {title}
+        </button>
+        {action}
+      </div>
+      <div
+        className="grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.16,1.05,0.3,1)]"
+        style={{ gridTemplateRows: open ? '1fr' : '0fr' }}
+      >
+        <div className="overflow-hidden">{children}</div>
+      </div>
+    </section>
+  )
+}
+
+function DateField({ value, onChange }: { value: string; onChange: (v: string) => void }) {
+  const ref = useRef<HTMLInputElement>(null)
+
+  return (
+    <input
+      ref={ref}
+      type="date"
+      className={inputClass}
+      value={value}
+      onChange={(e) => onChange(e.target.value)}
+      onClick={() => ref.current?.showPicker?.()}
+      onFocus={() => ref.current?.showPicker?.()}
+    />
+  )
+}
 
 export default function Admin() {
   const { data, update, reset } = usePortfolioData()
@@ -53,8 +109,7 @@ export default function Admin() {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-8">
-          <section className={sectionClass}>
-            <h2 className="mb-4 font-heading text-xl font-semibold">Basics</h2>
+          <Section title="Basics">
             <div className="grid gap-4 sm:grid-cols-2">
               <div>
                 <label className={labelClass}>Name</label>
@@ -106,11 +161,9 @@ export default function Admin() {
               </div>
               <div>
                 <label className={labelClass}>Career start date</label>
-                <input
-                  type="date"
-                  className={inputClass}
+                <DateField
                   value={form.careerStartDate}
-                  onChange={(e) => set('careerStartDate', e.target.value)}
+                  onChange={(v) => set('careerStartDate', v)}
                 />
                 <p className="mt-1 text-xs text-muted">
                   Drives the "Years experience" stat automatically — recalculated every time the
@@ -135,11 +188,11 @@ export default function Admin() {
                 />
               </div>
             </div>
-          </section>
+          </Section>
 
-          <section className={sectionClass}>
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="font-heading text-xl font-semibold">Stats</h2>
+          <Section
+            title="Stats"
+            action={
               <button
                 type="button"
                 onClick={() =>
@@ -150,7 +203,8 @@ export default function Admin() {
                 <Plus className="h-4 w-4" aria-hidden="true" />
                 Add stat
               </button>
-            </div>
+            }
+          >
             <div className="space-y-4">
               {form.stats.map((stat, i) => (
                 <div key={i} className="grid grid-cols-[1fr_100px_80px_auto] items-end gap-3">
@@ -206,11 +260,11 @@ export default function Admin() {
                 </div>
               ))}
             </div>
-          </section>
+          </Section>
 
-          <section className={sectionClass}>
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="font-heading text-xl font-semibold">Experience</h2>
+          <Section
+            title="Experience"
+            action={
               <button
                 type="button"
                 onClick={() =>
@@ -224,7 +278,8 @@ export default function Admin() {
                 <Plus className="h-4 w-4" aria-hidden="true" />
                 Add role
               </button>
-            </div>
+            }
+          >
             <div className="space-y-6">
               {form.experience.map((exp, i) => (
                 <div key={i} className="rounded-xl border border-border p-4">
@@ -311,11 +366,11 @@ export default function Admin() {
                 </div>
               ))}
             </div>
-          </section>
+          </Section>
 
-          <section className={sectionClass}>
-            <div className="mb-4 flex items-center justify-between">
-              <h2 className="font-heading text-xl font-semibold">Projects</h2>
+          <Section
+            title="Projects"
+            action={
               <button
                 type="button"
                 onClick={() =>
@@ -329,7 +384,8 @@ export default function Admin() {
                 <Plus className="h-4 w-4" aria-hidden="true" />
                 Add project
               </button>
-            </div>
+            }
+          >
             <div className="space-y-6">
               {form.projects.map((project, i) => (
                 <div key={i} className="rounded-xl border border-border p-4">
@@ -401,7 +457,7 @@ export default function Admin() {
                 </div>
               ))}
             </div>
-          </section>
+          </Section>
 
           <div className="flex justify-end">
             <button
