@@ -104,6 +104,19 @@ export default function Admin() {
                   onChange={(e) => set('email', e.target.value)}
                 />
               </div>
+              <div>
+                <label className={labelClass}>Career start date</label>
+                <input
+                  type="date"
+                  className={inputClass}
+                  value={form.careerStartDate}
+                  onChange={(e) => set('careerStartDate', e.target.value)}
+                />
+                <p className="mt-1 text-xs text-muted">
+                  Drives the "Years experience" stat automatically — recalculated every time the
+                  site loads, no manual updates needed.
+                </p>
+              </div>
               <div className="sm:col-span-2">
                 <label className={labelClass}>Tagline</label>
                 <input
@@ -159,12 +172,16 @@ export default function Admin() {
                       type="number"
                       className={inputClass}
                       value={stat.value}
+                      disabled={stat.label === 'Years experience' && !!form.careerStartDate}
                       onChange={(e) => {
                         const next = [...form.stats]
                         next[i] = { ...stat, value: Number(e.target.value) }
                         set('stats', next)
                       }}
                     />
+                    {stat.label === 'Years experience' && form.careerStartDate && (
+                      <p className="mt-1 text-xs text-muted">Auto-calculated from career start date</p>
+                    )}
                   </div>
                   <div>
                     <label className={labelClass}>Suffix</label>

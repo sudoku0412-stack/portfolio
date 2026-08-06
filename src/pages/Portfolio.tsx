@@ -1,5 +1,5 @@
 import { ArrowRight, Mail, MapPin, Phone, ExternalLink } from 'lucide-react'
-import { usePortfolioData } from '../lib/portfolio-data'
+import { usePortfolioData, getYearsOfExperience } from '../lib/portfolio-data'
 import AuroraBackground from '../components/AuroraBackground'
 import Nav from '../components/Nav'
 import Reveal from '../components/Reveal'
@@ -18,6 +18,12 @@ function initialsOf(name: string) {
 
 export default function Portfolio() {
   const { data } = usePortfolioData()
+  const yearsExperience = getYearsOfExperience(data.careerStartDate)
+  const displayStats = data.stats.map((stat) =>
+    stat.label === 'Years experience' && data.careerStartDate
+      ? { ...stat, value: yearsExperience }
+      : stat,
+  )
 
   return (
     <div id="top" className="relative min-h-screen">
@@ -65,7 +71,7 @@ export default function Portfolio() {
           </div>
 
           <div className="flex w-full flex-col gap-3 lg:w-64">
-            {data.stats.map((stat, i) => (
+            {displayStats.map((stat, i) => (
               <Reveal key={stat.label} variant="right" delay={i * 100}>
                 <ShineCard className="rounded-2xl border border-border bg-surface p-4">
                   <div className="font-heading text-3xl font-bold text-accent-2">
