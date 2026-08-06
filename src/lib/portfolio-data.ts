@@ -39,7 +39,7 @@ export const STORAGE_KEY = 'portfolio-data-v1'
 
 export const defaultData: PortfolioData = {
   name: 'Kaushik Majumder',
-  role: 'Software Engineer & Engineering Team Lead',
+  role: 'Engineering Team Lead at eXp Realty',
   location: 'Toronto, Canada',
   tagline: '12+ years building and leading teams that ship software people rely on.',
   about:

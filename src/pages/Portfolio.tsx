@@ -26,7 +26,7 @@ export default function Portfolio() {
 
       <main>
         {/* Hero */}
-        <section className="mx-auto flex min-h-[85vh] max-w-6xl flex-col items-start justify-center px-6 py-24">
+        <section className="mx-auto flex min-h-[60vh] max-w-6xl flex-col items-start justify-center px-6 py-12">
           <Reveal variant="up">
             <p className="mb-4 flex items-center gap-2 text-sm font-medium text-accent-2">
               <MapPin className="h-4 w-4" aria-hidden="true" />
@@ -47,7 +47,7 @@ export default function Portfolio() {
           <Reveal variant="up" delay={400}>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="#apps"
+                href="#experience"
                 className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-foreground transition-transform hover:scale-105"
               >
                 View my work
